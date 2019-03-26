@@ -1,5 +1,6 @@
 package com.datasains.diss.tugas_mid_kelompok7;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.exceptions.RealmMigrationNeededException;
 
 public class RegisterActivity extends AppCompatActivity {
     Realm realm;
@@ -19,19 +21,35 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        realm = Realm.getDefaultInstance();
+        try {
+            realm = Realm.getDefaultInstance();
+        } catch (RealmMigrationNeededException r) {
+            Realm.deleteRealm(realm.getDefaultConfiguration());
+            realm = Realm.getDefaultInstance();
+        }
     }
 
     public void register(View view) {
         String phone = ((TextView)findViewById(R.id.phone)).getText().toString();
         String name = ((TextView)findViewById(R.id.name)).getText().toString();
         String password = ((TextView)findViewById(R.id.password)).getText().toString();
-        UserModel model = new UserModel(phone, name, password);
-        Toast.makeText(this, "berhasil"+phone+name+password, Toast.LENGTH_LONG).show();
 
-        realm.beginTransaction();
-        realm.copyToRealm(model);
-        realm.commitTransaction();
+        UserModel model = new UserModel(phone, name, password);
+
+        UserModel user = realm.where(UserModel.class).equalTo("id", phone).findFirst();
+        if (user == null) {
+            realm.beginTransaction();
+            realm.copyToRealm(model);
+            realm.commitTransaction();
+            Toast.makeText(this, phone+" registered", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, phone+" already exists, try other phone number", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
     public void cek(View view) {
