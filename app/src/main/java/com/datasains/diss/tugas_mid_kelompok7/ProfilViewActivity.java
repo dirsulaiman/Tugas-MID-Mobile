@@ -63,7 +63,7 @@ public class ProfilViewActivity extends AppCompatActivity {
             String gender = isMale ? "Pria" : "Wanita";
 
             tv_name.setText(name);
-            tv_phone.setText("+62"+id);
+            tv_phone.setText(id);
             tv_address.setText(address);
             tv_religion.setText(religion);
             tv_email.setText(email);

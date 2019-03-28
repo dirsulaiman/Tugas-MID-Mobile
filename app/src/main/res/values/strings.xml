@@ -12,4 +12,26 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string-array name="religions">
+        <item>Islam</item>
+        <item>Kristen Protestan</item>
+        <item>Katolik</item>
+        <item>Hindu</item>
+        <item>Budha</item>
+        <item>Kong Hu Cu</item>
+    </string-array>
+    <string-array name="month">
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maret</item>
+        <item>April</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Agustus</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>Desember</item>
+    </string-array>
 </resources>

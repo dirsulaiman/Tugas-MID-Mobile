@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import io.realm.Realm;
@@ -19,8 +22,10 @@ public class EditProfilActivity extends AppCompatActivity {
     String religion;
     String email;
     boolean isMale;
-    EditText editText_name, editText_address, editText_birthday, editText_religion, editText_email, editText_gender, editText_password;
+    EditText editText_name, editText_address, editText_birthday, editText_email,  editText_password;
     TextView editText_phone;
+    RadioButton radio_gender;
+    Spinner spinner_religion;
     Realm realm;
     UserModel user;
     
@@ -41,14 +46,7 @@ public class EditProfilActivity extends AppCompatActivity {
             id = intent.getStringExtra("id");
         }
 
-        editText_name = findViewById(R.id.edit_name);
-        editText_phone = findViewById(R.id.edit_phone);
-        editText_password = findViewById(R.id.edit_password);
-        editText_address = findViewById(R.id.edit_address);
-        editText_religion = findViewById(R.id.edit_religion);
-        editText_email = findViewById(R.id.edit_email);
-        editText_birthday = findViewById(R.id.edit_birthday);
-        editText_gender = findViewById(R.id.edit_gender);
+
 
         user = realm.where(UserModel.class).equalTo("id", id).findFirst();
         if (user != null) {
@@ -62,16 +60,50 @@ public class EditProfilActivity extends AppCompatActivity {
             ttl_month = user.getTtl_month();
             ttl_year = user.getTtl_year();
             email = user.getEmail();
-            String gender = isMale ? "Pria" : "Wanita";
+
+            editText_name = findViewById(R.id.edit_name);
+            editText_phone = findViewById(R.id.edit_phone);
+            editText_password = findViewById(R.id.edit_password);
+            editText_address = findViewById(R.id.edit_address);
+            spinner_religion = findViewById(R.id.spinner_religion);
+            editText_email = findViewById(R.id.edit_email);
+            editText_birthday = findViewById(R.id.edit_birthday_date);
+            switch (religion) {
+                case "Islam":
+                    spinner_religion.setSelection(0);
+                    break;
+                case "Kristen Protestan":
+                    spinner_religion.setSelection(1);
+                    break;
+                case "Katolik":
+                    spinner_religion.setSelection(2);
+                    break;
+                case "Hindu":
+                    spinner_religion.setSelection(3);
+                    break;
+                case "Budha":
+                    spinner_religion.setSelection(4);
+                    break;
+                case "Kong Hu Cu":
+                    spinner_religion.setSelection(5);
+                    break;
+            }
 
             editText_name.setText(name);
             editText_phone.setText("+62"+id);
             editText_password.setText(password);
             editText_address.setText(address);
-            editText_religion.setText(religion);
+            //editText_religion.setText(religion);
             editText_email.setText(email);
             editText_birthday.setText(ttl_place+" "+ttl_date+" "+ttl_month+" "+ttl_year);
-            editText_gender.setText(gender);
+            RadioButton man_button, woman_button;
+            man_button = findViewById(R.id.gender_men);
+            woman_button = findViewById(R.id.gender_woman);
+            if (isMale) {
+                man_button.setChecked(true);
+            } else {
+                woman_button.setChecked(true);
+            }
         }
 
     }
@@ -81,9 +113,11 @@ public class EditProfilActivity extends AppCompatActivity {
         if (user != null) {
             name = editText_name.getText().toString();
             password = editText_password.getText().toString();
-//            isMale = editText_gender.getText().toString();
+            RadioGroup genderRadio = findViewById(R.id.radio_group);
+            RadioButton radio = (RadioButton) findViewById(genderRadio.getCheckedRadioButtonId());
+            isMale = radio.getText().toString().equals("Pria");
             address = editText_address.getText().toString();
-            religion = editText_religion.getText().toString();
+            religion = spinner_religion.getSelectedItem().toString();
 //            ttl_place = user.getTtl_place();
 //            ttl_date = user.getTtl_date();
 //            ttl_month = user.getTel_month();
@@ -93,7 +127,7 @@ public class EditProfilActivity extends AppCompatActivity {
             realm.beginTransaction();
             user.setName(name);
             user.setPassword(password);
-            user.setGender(false);
+            user.setGender(isMale);
             user.setAddress(address);
             user.setReligion(religion);
             user.setTtl_month(ttl_month);

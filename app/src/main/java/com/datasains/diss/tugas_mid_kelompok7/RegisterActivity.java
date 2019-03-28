@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +35,12 @@ public class RegisterActivity extends AppCompatActivity {
         String phone = ((TextView)findViewById(R.id.phone)).getText().toString();
         String name = ((TextView)findViewById(R.id.name)).getText().toString();
         String password = ((TextView)findViewById(R.id.password)).getText().toString();
+        RadioGroup genderRadio = findViewById(R.id.radio_group);
+        RadioButton radio = (RadioButton) findViewById(genderRadio.getCheckedRadioButtonId());
+        boolean isMale = radio.getText().toString().equals("Pria");
 
         UserModel model = new UserModel(phone, name, password);
+        model.setGender(isMale);
 
         UserModel user = realm.where(UserModel.class).equalTo("id", phone).findFirst();
         if (user == null) {
