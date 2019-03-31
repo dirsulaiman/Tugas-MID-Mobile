@@ -63,4 +63,10 @@ public class RegisterActivity extends AppCompatActivity {
         String size = String.valueOf(user.size());
         Toast.makeText(this, size, Toast.LENGTH_LONG).show();
     }
+
+    public void cancel(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
 }

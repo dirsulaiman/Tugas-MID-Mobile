@@ -89,7 +89,7 @@
                 android:orientation="horizontal"
                 android:padding="3dp">
                 <com.datasains.diss.tugas_mid_kelompok7.FontAwesome
-                    android:text="&#xf19d;"
+                    android:text="&#xf007;"
                     android:textSize="36sp"
                     android:textColor="#000"
                     android:layout_marginStart="20dp"
@@ -123,11 +123,6 @@
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"/>
-                <TextView
-                    android:text="+62 "
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/phone"
                     android:text="phone"
@@ -255,11 +250,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_primary"
             android:paddingBottom="5dp"
             android:text="Edit Profile"
             android:textColor="#fff"
             android:textSize="18sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"/>
         <Button
             android:onClick="logout"
             android:layout_width="300dp"

@@ -29,6 +29,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register Form"
+                android:textSize="24dp"
+                android:paddingBottom="15dp"
+                android:textStyle="bold"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -36,12 +43,13 @@
 
                 <EditText
                     android:id="@+id/phone"
+                    android:drawableEnd="@drawable/ic_local_phone_black_24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone number"
                     android:inputType="number"
                     android:maxLines="1"
-                    android:maxLength="13"
+                    android:maxLength="12"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -52,6 +60,7 @@
 
                 <EditText
                     android:id="@+id/name"
+                    android:drawableEnd="@drawable/ic_person_add_black_24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name"
@@ -67,6 +76,7 @@
 
                 <EditText
                     android:id="@+id/password"
+                    android:drawableEnd="@drawable/ic_vpn_key_black_24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
@@ -80,10 +90,17 @@
             </android.support.design.widget.TextInputLayout>
 
             <RadioGroup
+                android:paddingTop="5dp"
                 android:id="@+id/radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender "
+                    android:paddingEnd="10dp"
+                    android:layout_marginStart="5dp"/>
                 <RadioButton
                     android:id="@+id/gender_men"
                     android:layout_width="wrap_content"
@@ -97,25 +114,30 @@
                     android:layout_height="wrap_content"
                     android:text="Wanita"/>
             </RadioGroup>
-
-            <Button
-                android:onClick="register"
-                style="?android:textAppearanceSmall"
+            <LinearLayout
+                android:paddingTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Register"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+                <Button
+                    android:onClick="register"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_primary"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:textStyle="bold" />
 
-            <Button
-                android:onClick="cek"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="test"
-                android:textStyle="bold" />
-
+                <Button
+                    android:onClick="cancel"
+                    android:layout_weight="1"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="cancel"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

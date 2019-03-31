@@ -68,29 +68,32 @@ public class EditProfilActivity extends AppCompatActivity {
             spinner_religion = findViewById(R.id.spinner_religion);
             editText_email = findViewById(R.id.edit_email);
             editText_birthday = findViewById(R.id.edit_birthday_date);
-            switch (religion) {
-                case "Islam":
-                    spinner_religion.setSelection(0);
-                    break;
-                case "Kristen Protestan":
-                    spinner_religion.setSelection(1);
-                    break;
-                case "Katolik":
-                    spinner_religion.setSelection(2);
-                    break;
-                case "Hindu":
-                    spinner_religion.setSelection(3);
-                    break;
-                case "Budha":
-                    spinner_religion.setSelection(4);
-                    break;
-                case "Kong Hu Cu":
-                    spinner_religion.setSelection(5);
-                    break;
+            if (religion != null) {
+                switch (religion) {
+                    case "Islam":
+                        spinner_religion.setSelection(0);
+                        break;
+                    case "Kristen Protestan":
+                        spinner_religion.setSelection(1);
+                        break;
+                    case "Katolik":
+                        spinner_religion.setSelection(2);
+                        break;
+                    case "Hindu":
+                        spinner_religion.setSelection(3);
+                        break;
+                    case "Budha":
+                        spinner_religion.setSelection(4);
+                        break;
+                    case "Kong Hu Cu":
+                        spinner_religion.setSelection(5);
+                        break;
+                }
             }
 
+
             editText_name.setText(name);
-            editText_phone.setText("+62"+id);
+            editText_phone.setText(id);
             editText_password.setText(password);
             editText_address.setText(address);
             //editText_religion.setText(religion);

@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_top"
     tools:context=".EditProfilActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/gradient_top">
 
@@ -30,7 +31,7 @@
                 android:orientation="horizontal"
                 android:padding="3dp">
                 <com.datasains.diss.tugas_mid_kelompok7.FontAwesome
-                    android:text="&#xf2bd;"
+                    android:text="&#xf007;"
                     android:textSize="36sp"
                     android:textColor="#000"
                     android:layout_marginStart="20dp"
@@ -65,12 +66,6 @@
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"/>
-                <TextView
-                    android:text="+62 "
-                    android:maxLines="1"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/edit_phone"
                     android:text="phone"
@@ -248,7 +243,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_primary"
             android:paddingBottom="5dp"
             android:text="Save Profile"
             android:textColor="#fff"
