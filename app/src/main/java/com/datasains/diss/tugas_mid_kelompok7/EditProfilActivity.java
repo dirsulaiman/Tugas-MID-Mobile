@@ -10,6 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.security.Provider;
+
 import io.realm.Realm;
 import io.realm.exceptions.RealmMigrationNeededException;
 
@@ -145,5 +147,15 @@ public class EditProfilActivity extends AppCompatActivity {
         intent.putExtra("id", id);
         startActivity(intent);
         this.finish();
+    }
+
+    public void cancel(View view) {
+        Intent intent = new Intent(this, ProfilViewActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
+        this.finish();
+    }
+
+    public void delete(View view) {
     }
 }

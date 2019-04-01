@@ -84,4 +84,15 @@ public class ProfilViewActivity extends AppCompatActivity {
         startActivity(intent);
         this.finish();
     }
+
+    public void delete(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        realm.beginTransaction();
+        UserModel user = realm.where(UserModel.class).equalTo("id", id).findFirst();
+        user.deleteFromRealm();
+        realm.commitTransaction();
+        this.finish();
+        Toast.makeText(this, id+" has delete from database", Toast.LENGTH_LONG).show();
+    }
 }
