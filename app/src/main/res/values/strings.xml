@@ -12,6 +12,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="confirm_delete">Apakah anda serius ingin menghapus data ini? Data yang telah dihapus tidak dapat dikembalikan</string>
     <string-array name="religions">
         <item>Islam</item>
         <item>Kristen Protestan</item>

@@ -24,10 +24,9 @@ public class EditProfilActivity extends AppCompatActivity {
     String religion;
     String email;
     boolean isMale;
-    EditText editText_name, editText_address, editText_birthday, editText_email,  editText_password;
+    EditText editText_name, editText_address, editText_birthday, editText_email,  editText_password, editText_ttl_place, editText_ttl_date, editText_ttl_year;
     TextView editText_phone;
-    RadioButton radio_gender;
-    Spinner spinner_religion;
+    Spinner spinner_religion, spinner_ttl_month;
     Realm realm;
     UserModel user;
     
@@ -48,8 +47,6 @@ public class EditProfilActivity extends AppCompatActivity {
             id = intent.getStringExtra("id");
         }
 
-
-
         user = realm.where(UserModel.class).equalTo("id", id).findFirst();
         if (user != null) {
             name = user.getName();
@@ -69,7 +66,51 @@ public class EditProfilActivity extends AppCompatActivity {
             editText_address = findViewById(R.id.edit_address);
             spinner_religion = findViewById(R.id.spinner_religion);
             editText_email = findViewById(R.id.edit_email);
-            editText_birthday = findViewById(R.id.edit_birthday_date);
+            editText_ttl_place = findViewById(R.id.edit_birthday_place);
+            editText_ttl_date = findViewById(R.id.edit_birthday_date);
+            editText_ttl_year = findViewById(R.id.edit_birthday_year);
+            spinner_ttl_month = findViewById(R.id.edit_birthday_month);
+
+            if (ttl_month != null) {
+                switch (ttl_month) {
+                    case "Januari":
+                        spinner_ttl_month.setSelection(0);
+                        break;
+                    case "Februari":
+                        spinner_ttl_month.setSelection(1);
+                        break;
+                    case "Maret":
+                        spinner_ttl_month.setSelection(2);
+                        break;
+                    case "April":
+                        spinner_ttl_month.setSelection(3);
+                        break;
+                    case "Mei":
+                        spinner_ttl_month.setSelection(4);
+                        break;
+                    case "Juni":
+                        spinner_ttl_month.setSelection(5);
+                        break;
+                    case "Juli":
+                        spinner_ttl_month.setSelection(6);
+                        break;
+                    case "Agustus":
+                        spinner_ttl_month.setSelection(7);
+                        break;
+                    case "September":
+                        spinner_ttl_month.setSelection(8);
+                        break;
+                    case "Oktober":
+                        spinner_ttl_month.setSelection(9);
+                        break;
+                    case "November":
+                        spinner_ttl_month.setSelection(10);
+                        break;
+                    case "Desember":
+                        spinner_ttl_month.setSelection(11);
+                        break;
+                }
+            }
             if (religion != null) {
                 switch (religion) {
                     case "Islam":
@@ -93,14 +134,14 @@ public class EditProfilActivity extends AppCompatActivity {
                 }
             }
 
-
             editText_name.setText(name);
             editText_phone.setText(id);
             editText_password.setText(password);
             editText_address.setText(address);
-            //editText_religion.setText(religion);
             editText_email.setText(email);
-            editText_birthday.setText(ttl_place+" "+ttl_date+" "+ttl_month+" "+ttl_year);
+            editText_ttl_place.setText(ttl_place);
+            editText_ttl_date.setText(ttl_date);
+            editText_ttl_year.setText(ttl_year);
             RadioButton man_button, woman_button;
             man_button = findViewById(R.id.gender_men);
             woman_button = findViewById(R.id.gender_woman);
@@ -119,14 +160,14 @@ public class EditProfilActivity extends AppCompatActivity {
             name = editText_name.getText().toString();
             password = editText_password.getText().toString();
             RadioGroup genderRadio = findViewById(R.id.radio_group);
-            RadioButton radio = (RadioButton) findViewById(genderRadio.getCheckedRadioButtonId());
+            RadioButton radio = findViewById(genderRadio.getCheckedRadioButtonId());
             isMale = radio.getText().toString().equals("Pria");
             address = editText_address.getText().toString();
             religion = spinner_religion.getSelectedItem().toString();
-//            ttl_place = user.getTtl_place();
-//            ttl_date = user.getTtl_date();
-//            ttl_month = user.getTel_month();
-//            ttl_year = user.getTtl_year();
+            ttl_place = editText_ttl_place.getText().toString();
+            ttl_date = editText_ttl_date.getText().toString();
+            ttl_month = spinner_ttl_month.getSelectedItem().toString();
+            ttl_year = editText_ttl_year.getText().toString();
             email = editText_email.getText().toString();
 
             realm.beginTransaction();
@@ -156,6 +197,4 @@ public class EditProfilActivity extends AppCompatActivity {
         this.finish();
     }
 
-    public void delete(View view) {
-    }
 }

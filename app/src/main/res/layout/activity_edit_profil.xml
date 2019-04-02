@@ -109,7 +109,7 @@
                     android:gravity="center"/>
                 <EditText
                     android:id="@+id/edit_birthday_date"
-                    android:text="00"
+                    android:hint="00"
                     android:inputType="number"
                     android:maxLength="2"
                     android:textSize="18sp"
@@ -122,10 +122,32 @@
                     android:entries="@array/month"/>
                 <EditText
                     android:id="@+id/edit_birthday_year"
-                    android:text="year"
+                    android:hint="year"
                     android:inputType="number"
                     android:maxLength="4"
                     android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="3dp">
+                <com.datasains.diss.tugas_mid_kelompok7.FontAwesome
+                    android:text="&#xf236;"
+                    android:textSize="24sp"
+                    android:textColor="#FF1504CC"
+                    android:layout_marginEnd="20dp"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"/>
+                <EditText
+                    android:id="@+id/edit_birthday_place"
+                    android:hint="place of born"
+                    android:maxLength="10"
+                    android:textSize="18sp"
+                    android:singleLine="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

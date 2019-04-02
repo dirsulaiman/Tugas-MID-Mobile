@@ -1,9 +1,18 @@
 package com.datasains.diss.tugas_mid_kelompok7;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +49,6 @@ public class ProfilViewActivity extends AppCompatActivity {
         if (intent != null) {
             id = intent.getStringExtra("id");
         }
-        //Toast.makeText(this, id, Toast.LENGTH_LONG).show();
 
         try {
             realm = Realm.getDefaultInstance();
@@ -86,13 +94,38 @@ public class ProfilViewActivity extends AppCompatActivity {
     }
 
     public void delete(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        realm.beginTransaction();
-        UserModel user = realm.where(UserModel.class).equalTo("id", id).findFirst();
-        user.deleteFromRealm();
-        realm.commitTransaction();
-        this.finish();
-        Toast.makeText(this, id+" has delete from database", Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+//        realm.beginTransaction();
+//        UserModel user = realm.where(UserModel.class).equalTo("id", id).findFirst();
+//        user.deleteFromRealm();
+//        realm.commitTransaction();
+//        this.finish();
+//        Toast.makeText(this, id+" has delete from database", Toast.LENGTH_LONG).show();
+
+        AlertDialog.Builder d = new AlertDialog.Builder(this);
+        d.setTitle("Dele account");
+        d.setMessage(R.string.confirm_delete);
+        d.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                realm.beginTransaction();
+                UserModel user = realm.where(UserModel.class).equalTo("id", id).findFirst();
+                user.deleteFromRealm();
+                realm.commitTransaction();
+                ProfilViewActivity.this.finish();
+                Toast.makeText(ProfilViewActivity.this, id+" has delete from database", Toast.LENGTH_LONG).show();
+            }
+        })
+        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) { // TODO Auto-generated method stub
+                dialog.dismiss();
+            }
+        })
+        .show();
     }
 }
